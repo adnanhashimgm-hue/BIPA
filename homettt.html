@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<div class="logout-box">
+
+    <a href="login.html" class="logout-btn">
+        ⎋ تسجيل الخروج
+    </a>
+
+</div>
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<div class="top-bar">
+
+
+
+<title>لوحة التحكم</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Cairo',sans-serif;
+}
+
+body{
+    background:#f5f7fb;
+    color:#0b2f6b;
+}
+
+/* MAIN */
+
+.dashboard{
+    display:flex;
+    min-height:100vh;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+    width:300px;
+    background:#032b8c;
+    color:#fff;
+    padding:30px 20px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
+
+.logo{
+    text-align:center;
+}
+
+.logo img{
+    width:90px;
+    margin-bottom:15px;
+}
+
+.logout-box{
+    display:flex;
+    justify-content:flex-start;
+    margin-bottom:20px;
+}
+
+.logout-btn{
+    background:#ffffff;
+    color:#dc2626;
+    text-decoration:none;
+    padding:12px 22px;
+    border-radius:14px;
+    font-size:18px;
+    font-weight:700;
+    border:1px solid #f1caca;
+    transition:0.3s;
+    box-shadow:0 2px 10px rgba(0,0,0,.05);
+}
+
+.logout-btn:hover{
+    background:#dc2626;
+    color:#fff;
+}
+
+.logo h2{
+    font-size:30px;
+    line-height:1.7;
+}
+
+.menu{
+    margin-top:40px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.menu a{
+    color:#fff;
+    text-decoration:none;
+    padding:18px 20px;
+    border-radius:16px;
+    font-size:22px;
+    transition:0.3s;
+    font-weight:600;
+}
+
+.menu a:hover,
+.menu a.active{
+    background:#2f62df;
+}
+
+/* PROFILE */
+
+.profile{
+    border-top:1px solid rgba(255,255,255,.2);
+    padding-top:20px;
+    text-align:center;
+}
+
+.profile-icon{
+    font-size:60px;
+    margin-bottom:10px;
+}
+
+.profile h3{
+    font-size:24px;
+    margin-bottom:8px;
+}
+
+.profile p{
+    font-size:18px;
+    opacity:.9;
+}
+
+.profile small{
+    display:block;
+    margin-top:20px;
+    font-size:16px;
+    opacity:.8;
+}
+
+/* CONTENT */
+
+.content{
+    flex:1;
+    padding:30px;
+}
+
+/* TOP */
+
+.top-bar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.actions{
+    display:flex;
+    gap:15px;
+}
+
+.select-box,
+.filter-btn{
+    background:#fff;
+    border:none;
+    border-radius:14px;
+    padding:14px 20px;
+    font-size:18px;
+    box-shadow:0 2px 10px rgba(0,0,0,.05);
+}
+
+.page-title{
+    text-align:center;
+    flex:1;
+}
+
+.page-title h1{
+    font-size:46px;
+    margin-bottom:10px;
+}
+
+.page-title p{
+    font-size:20px;
+    color:#666;
+}
+
+/* STATS */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    margin-bottom:25px;
+}
+
+.card{
+    background:#fff;
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 4px 12px rgba(0,0,0,.05);
+}
+
+.card h3{
+    margin-bottom:15px;
+    font-size:22px;
+}
+
+.number{
+    font-size:55px;
+    font-weight:700;
+}
+
+.green{
+    color:#15a34a;
+}
+
+.red{
+    color:#e11d48;
+}
+
+/* GRID */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
+    gap:20px;
+    margin-bottom:20px;
+}
+
+.box{
+    background:#fff;
+    border-radius:20px;
+    padding:25px;
+    min-height:320px;
+    box-shadow:0 4px 12px rgba(0,0,0,.05);
+}
+
+.box h2{
+    margin-bottom:20px;
+    font-size:28px;
+}
+
+/* FAKE CHARTS */
+
+.chart{
+    width:100%;
+    height:230px;
+    border-radius:16px;
+}
+
+/* LINE CHART */
+
+.line-chart{
+    background:
+    linear-gradient(to top,#dbeafe,#ffffff);
+    border:2px solid #dbeafe;
+}
+
+/* DONUT */
+
+.donut{
+    width:220px;
+    height:220px;
+    border-radius:50%;
+    margin:auto;
+
+    background:
+    conic-gradient(
+        #22c55e 0% 45%,
+        #8b5cf6 45% 75%,
+        #facc15 75% 95%,
+        #ef4444 95% 100%
+    );
+}
+
+/* MAP */
+
+.map{
+    background:
+    linear-gradient(135deg,#cfe0ff,#eff6ff);
+}
+
+/* BARS */
+
+.bars{
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+}
+
+.bar-item span{
+    display:block;
+    margin-bottom:10px;
+    font-size:20px;
+}
+
+.bar{
+    height:20px;
+    background:#e5e7eb;
+    border-radius:30px;
+    overflow:hidden;
+}
+
+.bar div{
+    height:100%;
+    background:#2563eb;
+    border-radius:30px;
+}
+
+/* ALERTS */
+
+.alert{
+    padding:18px;
+    border-radius:14px;
+    margin-bottom:15px;
+    font-size:20px;
+    font-weight:600;
+}
+
+.alert-red{
+    background:#fee2e2;
+    color:#dc2626;
+}
+
+.alert-yellow{
+    background:#fef3c7;
+    color:#ca8a04;
+}
+
+.alert-blue{
+    background:#dbeafe;
+    color:#2563eb;
+}
+
+/* FOOTER */
+
+.footer{
+    margin-top:20px;
+    color:#666;
+    font-size:18px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1200px){
+
+    .dashboard{
+        flex-direction:column;
+    }
+
+    .sidebar{
+        width:100%;
+    }
+
+    .top-bar{
+        flex-direction:column;
+        gap:20px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div>
+
+            <div class="logo">
+
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Coat_of_arms_of_Bahrain.svg/800px-Coat_of_arms_of_Bahrain.svg.png">
+
+                <h2>
+                    مملكة البحرين<br>
+                    منصة التراخيص الذكية<br>
+                    للاستزراع المائي
+                </h2>
+
+            </div>
+
+            <div class="menu">
+
+                <a href="#" class="active">لوحة التحكم</a>
+
+               
+<a href="request1.html">الطلبات</a>
+
+                <a href="#">التدقيق الفني</a>
+
+                <a href="#">الموافقات</a>
+
+                <a href="#">التقارير</a>
+
+                <a href="#">الإحصائيات</a>
+
+                <a href="#">التنبيهات</a>
+
+                <a href="#">الإعدادات</a>
+
+                <a href="#">المستخدمون</a>
+
+            </div>
+
+        </div>
+
+        <div class="profile">
+
+            <div class="profile-icon">👤</div>
+
+            <h3>أحمد محمد</h3>
+
+            <p>مدير النظام</p>
+
+            <small>
+                آخر تسجيل دخول<br>
+                2024-05-05 10:30 AM
+            </small>
+
+        </div>
+
+    </aside>
+
+    <!-- CONTENT -->
+
+    <main class="content">
+
+        <!-- TOP -->
+
+        <div class="top-bar">
+
+            <div class="actions">
+
+                <button class="filter-btn">
+                    تصفية
+                </button>
+
+                <select class="select-box">
+
+                    <option>
+                        شهر مايو 2024
+                    </option>
+
+                    <option>
+                        أبريل 2024
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="page-title">
+
+                <h1>
+                    لوحة ذكية لعرض مؤشرات الأداء والإحصائيات
+                </h1>
+
+                <p>
+                    نظرة عامة على أداء المنصة وطلبات التراخيص
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- STATS -->
+
+        <section class="stats">
+
+            <div class="card">
+
+                <h3>إجمالي الطلبات</h3>
+
+                <div class="number">1,248</div>
+
+                <span class="green">+12%</span>
+
+            </div>
+
+            <div class="card">
+
+                <h3>قيد المراجعة</h3>
+
+                <div class="number">342</div>
+
+                <span class="green">+8%</span>
+
+            </div>
+
+            <div class="card">
+
+                <h3>قيد التدقيق الفني</h3>
+
+                <div class="number">906</div>
+
+                <span class="green">+15%</span>
+
+            </div>
+
+            <div class="card">
+
+                <h3>الموافقات</h3>
+
+                <div class="number">642</div>
+
+                <span class="green">+18%</span>
+
+            </div>
+
+            <div class="card">
+
+                <h3>متوسط مدة الإنجاز</h3>
+
+                <div class="number">15</div>
+
+                <span class="red">-2 يوم</span>
+
+            </div>
+
+        </section>
+
+        <!-- CHARTS -->
+
+        <section class="grid">
+
+            <div class="box">
+
+                <h2>الطلبات خلال الأشهر</h2>
+
+                <div class="chart line-chart"></div>
+
+            </div>
+
+            <div class="box">
+
+                <h2>الطلبات حسب الحالة</h2>
+
+                <div class="donut"></div>
+
+            </div>
+
+            <div class="box">
+
+                <h2>الطلبات حسب المنطقة</h2>
+
+                <div class="chart map"></div>
+
+            </div>
+
+        </section>
+
+        <!-- BOTTOM -->
+
+        <section class="grid">
+
+            <div class="box">
+
+                <h2>أعلى أنواع التراخيص طلباً</h2>
+
+                <div class="bars">
+
+                    <div class="bar-item">
+
+                        <span>ترخيص استزراع مائي</span>
+
+                        <div class="bar">
+                            <div style="width:90%"></div>
+                        </div>
+
+                    </div>
+
+                    <div class="bar-item">
+
+                        <span>تجديد ترخيص</span>
+
+                        <div class="bar">
+                            <div style="width:60%"></div>
+                        </div>
+
+                    </div>
+
+                    <div class="bar-item">
+
+                        <span>تعديل ترخيص</span>
+
+                        <div class="bar">
+                            <div style="width:35%"></div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="box">
+
+                <h2>الطلبات حسب مصدر التقديم</h2>
+
+                <div class="donut"></div>
+
+            </div>
+
+            <div class="box">
+
+                <h2>التنبيهات والمهام</h2>
+
+                <div class="alert alert-red">
+                    طلبات متأخرة في التدقيق الفني
+                </div>
+
+                <div class="alert alert-yellow">
+                    مستندات منتهية الصلاحية
+                </div>
+
+                <div class="alert alert-blue">
+                    طلبات تحتاج إلى استكمال
+                </div>
+
+            </div>
+
+        </section>
+
+        <div class="footer">
+
+            آخر تحديث :
+            2024-05-05 10:30 AM
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+</html>

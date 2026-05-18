@@ -1,0 +1,723 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>منصة الاستزراع المائي الذكي</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Cairo', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #f5f8fc;
+    color: #0b2f6b;
+}
+
+/* NAVBAR */
+
+.navbar {
+    width: 100%;
+    background: #ffffff;
+    box-shadow: 0 4px 20px rgba(0,0,0,.05);
+    padding: 20px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo img {
+    width: 300px;
+    height: auto;
+    object-fit: contain;
+}
+
+.logo h1 {
+    font-size: 28px;
+    line-height: 1.6;
+}
+
+.menu {
+    display: flex;
+    gap: 20px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #032b8c;
+    font-size: 18px;
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+.menu a:hover {
+    color: #1d4ed8;
+}
+
+/* HERO */
+
+.hero {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 80px;
+    gap: 50px;
+
+    background:
+    linear-gradient(
+        rgba(255,255,255,.78),
+        rgba(255,255,255,.78)
+    ),
+   url('background.jpeg');
+
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-content {
+    flex: 1;
+}
+
+.hero-content h2 {
+    font-size: 70px;
+    line-height: 1.5;
+    margin-bottom: 25px;
+    color: #032b8c;
+}
+
+.hero-content p {
+    font-size: 28px;
+    line-height: 2;
+    color: #475569;
+    margin-bottom: 40px;
+}
+
+/* BUTTONS */
+
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 18px 40px;
+    border-radius: 18px;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+.primary-btn {
+    background: #032b8c;
+    color: #fff;
+}
+
+.primary-btn:hover {
+    background: #1d4ed8;
+}
+
+.outline-btn {
+    border: 2px solid #032b8c;
+    color: #032b8c;
+    background: #fff;
+}
+
+.outline-btn:hover {
+    background: #f1f5ff;
+}
+
+/* HERO IMAGE */
+
+.hero-card {
+    width: 500px;
+    background: #fff;
+    border-radius: 30px;
+    padding: 35px;
+    box-shadow: 0 10px 40px rgba(0,0,0,.08);
+}
+
+.hero-card h3 {
+    font-size: 34px;
+    margin-bottom: 25px;
+}
+
+.hero-card ul {
+    list-style: none;
+}
+
+.hero-card li {
+    margin-bottom: 20px;
+    font-size: 22px;
+    color: #475569;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* SECTION */
+
+.section {
+    padding: 90px 70px;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-title h2 {
+    font-size: 52px;
+    margin-bottom: 15px;
+}
+
+.section-title p {
+    font-size: 24px;
+    color: #64748b;
+}
+
+/* SERVICES */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+    gap: 30px;
+}
+
+.card {
+    background: #fff;
+    border-radius: 26px;
+    padding: 35px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.05);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+}
+
+.card-icon {
+    width: 90px;
+    height: 90px;
+    border-radius: 20px;
+    background: #e8efff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 42px;
+    margin-bottom: 25px;
+}
+
+.card h3 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.card p {
+    font-size: 22px;
+    line-height: 1.9;
+    color: #64748b;
+}
+
+/* REQUIREMENTS */
+
+.requirements {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    gap: 25px;
+}
+
+.requirement {
+    background: #fff;
+    border-right: 8px solid #1d4ed8;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 6px 20px rgba(0,0,0,.05);
+}
+
+.requirement h4 {
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.login-top-btn {
+    background: #032b8c;
+    color: #fff !important;
+    padding: 14px 28px;
+    border-radius: 16px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 700;
+    transition: 0.3s;
+    box-shadow: 0 6px 20px rgba(3,43,140,.18);
+}
+
+.login-top-btn:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+}
+
+.requirement p {
+    font-size: 20px;
+    line-height: 1.8;
+    color: #64748b;
+}
+
+/* STATUS */
+
+.status-box {
+    background: #032b8c;
+    color: #fff;
+    border-radius: 30px;
+    padding: 60px;
+    text-align: center;
+}
+
+.status-box h2 {
+    font-size: 52px;
+    margin-bottom: 25px;
+}
+
+.status-box p {
+    font-size: 26px;
+    line-height: 2;
+    margin-bottom: 40px;
+}
+
+.status-input {
+    max-width: 700px;
+    margin: auto;
+    display: flex;
+    gap: 15px;
+}
+
+.status-input input {
+    flex: 1;
+    height: 76px;
+    border: none;
+    border-radius: 18px;
+    padding: 0 25px;
+    font-size: 22px;
+}
+
+.status-input button {
+    width: 220px;
+    border: none;
+    border-radius: 18px;
+    background: #22c55e;
+    color: #fff;
+    font-size: 24px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* FOOTER */
+
+.footer {
+    background: #021f63;
+    color: #fff;
+    padding: 50px;
+    text-align: center;
+    margin-top: 80px;
+}
+
+.footer h3 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.footer p {
+    font-size: 20px;
+    line-height: 2;
+    opacity: .9;
+}
+
+/* CHATBOT BUTTON */
+.chatbot {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    background: #032b8c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 38px;
+    box-shadow: 0 10px 25px rgba(0,0,0,.2);
+    cursor: pointer;
+    transition: 0.3s;
+    z-index: 1000;
+}
+
+.chatbot:hover {
+    transform: scale(1.1);
+    background: #1d4ed8;
+}
+
+/* CHAT WINDOW POPUP */
+.chat-window {
+    position: fixed;
+    bottom: 130px;
+    left: 30px;
+    width: 380px;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,.15);
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 1001;
+    border: 1px solid #e8efff;
+}
+
+/* Class to show the chat window */
+.chat-window.active {
+    display: flex;
+}
+
+.chat-header {
+    background: #032b8c;
+    color: #fff;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-header h3 {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.close-chat {
+    font-size: 28px;
+    cursor: pointer;
+    line-height: 1;
+    transition: 0.3s;
+}
+
+.close-chat:hover {
+    color: #ff4d4f;
+}
+
+.chat-body {
+    padding: 20px;
+    height: 350px;
+    overflow-y: auto;
+    background: #f5f8fc;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.message {
+    max-width: 80%;
+    padding: 12px 18px;
+    border-radius: 18px;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.bot-msg {
+    background: #ffffff;
+    color: #0b2f6b;
+    align-self: flex-start;
+    border-bottom-right-radius: 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,.05);
+}
+
+.user-msg {
+    background: #1d4ed8;
+    color: #ffffff;
+    align-self: flex-end;
+    border-bottom-left-radius: 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,.05);
+}
+
+.chat-footer {
+    padding: 15px;
+    background: #fff;
+    display: flex;
+    gap: 10px;
+    border-top: 1px solid #e8efff;
+}
+
+.chat-footer input {
+    flex: 1;
+    padding: 10px 15px;
+    border: 1px solid #cbd5e1;
+    border-radius: 20px;
+    outline: none;
+    font-size: 16px;
+    font-family: 'Cairo', sans-serif;
+}
+
+.chat-footer button {
+    background: #032b8c;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 0 20px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 16px;
+    transition: 0.3s;
+    font-family: 'Cairo', sans-serif;
+}
+
+.chat-footer button:hover {
+    background: #1d4ed8;
+}
+
+/* RESPONSIVE */
+@media(max-width:1200px){
+    .hero {
+        flex-direction: column;
+        text-align: center;
+    }
+    .hero-card {
+        width: 100%;
+    }
+    .navbar {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+@media(max-width:500px){
+    .chat-window {
+        width: 90%;
+        left: 5%;
+        right: 5%;
+        bottom: 110px;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="logo">
+        <img src="sce-logo-latest.png" alt="شعار">
+        <h1>منصة الاستزراع المائي الذكي</h1>
+    </div>
+    <div class="menu">
+        <a href="#">الرئيسية</a>
+        <a href="#">خدماتنا</a>
+        <a href="#">طلبات التراخيص</a>
+        <a href="#">متابعة الطلبات</a>
+        <a href="#">المساعدة</a>
+        <a href="login.html" class="login-top-btn">👤 تسجيل الدخول</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+
+    <!-- HERO CARD (Now moved to the top so it appears on the right in RTL) -->
+    <div class="hero-card">
+        <h3>الخدمات الرئيسية</h3>
+        <ul>
+            <li>✅ تقديم طلبات التراخيص إلكترونياً</li>
+            <li>📍 تحديد المواقع عبر الخرائط الذكية GIS</li>
+            <li>📄 رفع المستندات ومراجعتها</li>
+            <li>📊 متابعة حالة الطلب بشكل مباشر</li>
+            <li>🤖 مساعد ذكي للإجابة على الاستفسارات</li>
+            <li>🔔 تنبيهات وإشعارات فورية</li>
+        </ul>
+    </div>
+
+    <!-- TEXT & BUTTONS (Now moved to the bottom so they appear on the left in RTL) -->
+    <div class="hero-content">
+        <h2>منصة الاستزراع المائي الذكية</h2>
+        <p>
+            منصة إلكترونية متكاملة لتقديم طلبات تراخيص الاستزراع المائي،
+            متابعة حالة الطلبات، التحقق من الامتثال البيئي،
+            وإدارة كافة الخدمات المتعلقة بالمزارع البحرية باستخدام
+            التقنيات الذكية والخرائط الجغرافية التفاعلية GIS.
+        </p>
+        <div class="hero-buttons">
+            <a href="https://www.sijilat.bh/my-account/landing-page.aspx?sid=4" class="btn primary-btn">تقديم طلب ترخيص</a>
+            <a href="request_flow.html" class="btn outline-btn">متابعة الطلب</a>
+        </div>
+    </div>
+
+
+
+
+</section>
+
+<!-- SERVICES -->
+<section class="section">
+    <div class="section-title">
+        <h2>الخدمات الإلكترونية</h2>
+        <p>مجموعة متكاملة من الخدمات الرقمية الذكية</p>
+    </div>
+    <div class="cards">
+        <div class="card">
+            <div class="card-icon">📄</div>
+            <h3>طلب ترخيص جديد</h3>
+            <p>تقديم طلب ترخيص استزراع مائي جديد مع متابعة مراحل الطلب إلكترونياً.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">📊</div>
+            <h3>متابعة الطلبات</h3>
+            <p>تتبع حالة الطلبات ومعرفة حالة التدقيق والموافقات بشكل مباشر.</p>
+        </div>
+
+        <div class="card"
+onclick="window.location.href='gis.html'"
+style="cursor:pointer;">
+
+    <div class="card-icon">🛰️</div>
+
+    <h3>
+        الخرائط الذكية GIS
+    </h3>
+
+    <p>
+        تحديد مواقع المزارع وتحليل المواقع باستخدام نظم المعلومات الجغرافية.
+    </p>
+
+</div>
+
+</section>
+
+<!-- REQUIREMENTS -->
+
+<!-- STATUS -->
+<section class="section" id="status">
+    <div class="status-box">
+        <h2>متابعة حالة الطلب</h2>
+        <p>أدخل رقم الطلب لمعرفة آخر تحديثات الطلب وحالة المراجعة الفنية والموافقات.</p>
+        <div class="status-input">
+            <input type="text" placeholder="أدخل رقم الطلب">
+            <button>بحث</button>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <h3>منصة الاستزراع المائي</h3>
+    <p>منصة حكومية ذكية لدعم مشاريع الاستزراع المائي وتعزيز الاستدامة البيئية باستخدام أحدث التقنيات الرقمية.</p>
+</footer>
+
+
+<!-- CHATBOT BUTTON -->
+<div class="chatbot" id="chatbotBtn">
+    🤖
+</div>
+
+<!-- CHAT WINDOW POPUP -->
+<div class="chat-window" id="chatWindow">
+    <div class="chat-header">
+        <h3>🤖 المساعد الذكي</h3>
+        <span class="close-chat" id="closeChatBtn">&times;</span>
+    </div>
+    <div class="chat-body" id="chatBody">
+        <!-- Dummy Conversation -->
+        <div class="message bot-msg">أهلاً بك في منصة الاستزراع المائي! كيف يمكنني مساعدتك اليوم؟</div>
+        <div class="message user-msg">كيف يمكنني تقديم طلب ترخيص جديد؟</div>
+        <div class="message bot-msg">يمكنك ذلك بسهولة من خلال الضغط على زر "تقديم طلب ترخيص" في أعلى الصفحة وتعبئة النموذج المطلوب وإرفاق المستندات مثل السجل التجاري والدراسة البيئية.</div>
+    </div>
+    <div class="chat-footer">
+        <input type="text" id="chatInput" placeholder="اكتب استفسارك هنا...">
+        <button id="sendBtn">إرسال</button>
+    </div>
+</div>
+
+
+<!-- JAVASCRIPT FOR CHATBOT -->
+<script>
+    const chatbotBtn = document.getElementById('chatbotBtn');
+    const chatWindow = document.getElementById('chatWindow');
+    const closeChatBtn = document.getElementById('closeChatBtn');
+    const sendBtn = document.getElementById('sendBtn');
+    const chatInput = document.getElementById('chatInput');
+    const chatBody = document.getElementById('chatBody');
+
+    // Toggle Chat Window
+    chatbotBtn.addEventListener('click', () => {
+        chatWindow.classList.toggle('active');
+    });
+
+    // Close Chat Window
+    closeChatBtn.addEventListener('click', () => {
+        chatWindow.classList.remove('active');
+    });
+
+    // Function to add messages to chat
+    function sendMessage() {
+        const messageText = chatInput.value.trim();
+        if (messageText === '') return;
+
+        // Create User Message Element
+        const userMsgDiv = document.createElement('div');
+        userMsgDiv.classList.add('message', 'user-msg');
+        userMsgDiv.textContent = messageText;
+        chatBody.appendChild(userMsgDiv);
+
+        // Clear input and scroll down
+        chatInput.value = '';
+        chatBody.scrollTop = chatBody.scrollHeight;
+
+        // Simulate Bot Dummy Reply after 1 second
+        setTimeout(() => {
+            const botMsgDiv = document.createElement('div');
+            botMsgDiv.classList.add('message', 'bot-msg');
+            botMsgDiv.textContent = "عذراً، هذه إجابة تلقائية (Dummy). سيتم ربط المساعد الذكي قريباً للرد على استفسارك.";
+            chatBody.appendChild(botMsgDiv);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }, 1000);
+    }
+
+    // Send on Button Click
+    sendBtn.addEventListener('click', sendMessage);
+
+    // Send on Enter Key
+    chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    });
+</script>
+
+</body>
+</html>

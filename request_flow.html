@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>متابعة حالة الطلب</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Cairo',sans-serif;
+}
+
+
+@keyframes pulseActive{
+
+    0%{
+        transform:scale(1);
+        box-shadow:0 0 0 rgba(3,43,140,.4);
+    }
+
+    50%{
+        transform:scale(1.12);
+        box-shadow:0 0 20px rgba(3,43,140,.55);
+    }
+
+    100%{
+        transform:scale(1);
+        box-shadow:0 0 0 rgba(3,43,140,.4);
+    }
+
+}
+
+.step.active .step-circle{
+
+    background:#032b8c;
+    animation:pulseActive 1.2s infinite;
+
+}
+
+body{
+    background:#f5f7fb;
+    padding:20px;
+    color:#0b2f6b;
+}
+
+.page{
+    background:#fff;
+    border-radius:30px;
+    padding:35px;
+    box-shadow:0 10px 35px rgba(0,0,0,.05);
+}
+
+/* TOP */
+
+.top-bar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.back-btn{
+    text-decoration:none;
+    border:2px solid #dbe3f0;
+    padding:14px 30px;
+    border-radius:16px;
+    color:#032b8c;
+    font-size:20px;
+    font-weight:700;
+    transition:.3s;
+}
+
+.back-btn:hover{
+    background:#f1f5ff;
+}
+
+.logo{
+    text-align:center;
+}
+
+.logo img {
+    width: 300px;
+    height: auto;
+    object-fit: contain;
+}
+
+.logo h1{
+    font-size:28px;
+    line-height:1.7;
+}
+
+/* PAGE TITLE */
+
+.page-title{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.welcome-user{
+    background:#eef4ff;
+    color:#032b8c;
+    padding:16px 28px;
+    border-radius:18px;
+    font-size:24px;
+    font-weight:700;
+    display:inline-block;
+    margin-bottom:25px;
+    box-shadow:0 4px 15px rgba(0,0,0,.05);
+}
+
+.page-title h2{
+    font-size:56px;
+    margin-bottom:15px;
+}
+
+.page-title p{
+    font-size:24px;
+    color:#64748b;
+}
+
+/* CONTENT */
+
+.content{
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+}
+
+.top-sections{
+    display:grid;
+    grid-template-columns:1fr 2fr;
+    gap:25px;
+    align-items:start;
+}
+
+/* CARDS */
+
+.card{
+    background:#fff;
+    border:1px solid #e6edf7;
+    border-radius:24px;
+    padding:30px;
+}
+
+/* REQUEST HEADER */
+
+.request-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+.badge{
+    background:#e7f7ea;
+    color:#1f8a42;
+    padding:12px 22px;
+    border-radius:14px;
+    font-size:18px;
+    font-weight:700;
+}
+
+.request-item h3{
+    font-size:18px;
+    color:#64748b;
+    margin-bottom:8px;
+}
+
+.request-item p{
+    font-size:34px;
+    font-weight:700;
+}
+
+/* SUMMARY */
+
+.summary-title{
+    text-align:center;
+    font-size:36px;
+    margin-bottom:30px;
+}
+
+.summary-row{
+    display:flex;
+    justify-content:space-between;
+    padding:18px 0;
+    border-bottom:1px solid #edf2f7;
+    font-size:20px;
+}
+
+.summary-row strong{
+    color:#032b8c;
+}
+
+/* BUTTON */
+
+.full-btn{
+    width:100%;
+    height:68px;
+    border-radius:18px;
+    border:2px solid #032b8c;
+    background:#fff;
+    color:#032b8c;
+    font-size:22px;
+    font-weight:700;
+    margin-top:25px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.full-btn:hover{
+    background:#032b8c;
+    color:#fff;
+}
+
+/* STEPS */
+
+.steps-title{
+    text-align:center;
+    font-size:40px;
+    margin-bottom:40px;
+}
+
+.steps{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:relative;
+    margin-bottom:50px;
+}
+
+.steps::before{
+    content:'';
+    position:absolute;
+    top:22px;
+    right:60px;
+    left:60px;
+    height:4px;
+    background:#dbe3f0;
+    z-index:0;
+}
+
+.step{
+    position:relative;
+    z-index:2;
+    text-align:center;
+    width:20%;
+}
+
+.step-circle{
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    background:#16a34a;
+    color:#fff;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+    font-size:18px;
+}
+
+.step.active .step-circle{
+    background:#032b8c;
+}
+
+.step.pending .step-circle{
+    background:#fff;
+    border:3px solid #cbd5e1;
+    color:#64748b;
+}
+
+.step h4{
+    margin-top:15px;
+    font-size:20px;
+}
+
+.step p{
+    margin-top:10px;
+    color:#64748b;
+}
+
+/* ALERT */
+
+.alert-box{
+    background:#f1f5fb;
+    border-radius:20px;
+    padding:35px;
+    text-align:center;
+    margin-top:30px;
+}
+
+.alert-box h3{
+    font-size:34px;
+    margin-bottom:12px;
+}
+
+.alert-box p{
+    font-size:22px;
+    color:#64748b;
+}
+
+/* LOG */
+
+.log-title{
+    text-align:center;
+    font-size:40px;
+    margin-bottom:35px;
+}
+
+.log-item{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    padding:22px 0;
+    border-bottom:1px solid #eef2f7;
+}
+
+.log-left{
+    display:flex;
+    gap:18px;
+}
+
+.log-icon{
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    background:#16a34a;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+}
+
+.log-text h4{
+    font-size:24px;
+    margin-bottom:8px;
+}
+
+.log-text p{
+    color:#64748b;
+    font-size:18px;
+}
+
+.log-right{
+    text-align:left;
+    color:#64748b;
+    font-size:18px;
+}
+
+/* NOTICE */
+
+.notice{
+    background:#fff8e8;
+    border-radius:22px;
+    padding:28px;
+    margin-top:25px;
+}
+
+.notice h3{
+    font-size:30px;
+    margin-bottom:15px;
+    color:#b7791f;
+}
+
+.notice p{
+    font-size:20px;
+    color:#64748b;
+    line-height:1.8;
+}
+
+/* HELP */
+
+.help{
+    background:#f8fafc;
+    border-radius:22px;
+    padding:30px;
+    margin-top:25px;
+    text-align:center;
+}
+
+.help h3{
+    font-size:34px;
+    margin-bottom:12px;
+}
+
+.help p{
+    font-size:20px;
+    color:#64748b;
+    margin-bottom:25px;
+}
+
+.help a{
+    display:inline-block;
+    background:#032b8c;
+    color:#fff;
+    padding:16px 35px;
+    border-radius:16px;
+    text-decoration:none;
+    font-size:22px;
+    font-weight:700;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1200px){
+
+    .top-sections{
+        grid-template-columns:1fr;
+    }
+
+    .steps{
+        flex-wrap:wrap;
+        gap:25px;
+    }
+
+    .step{
+        width:45%;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="page">
+
+    <!-- TOP -->
+
+    <div class="top-bar">
+
+        <a href="home.html" class="back-btn">
+            ← العودة
+        </a>
+
+        <div class="logo">
+
+            <img src="sce-logo-latest.png">
+
+    <h1>
+    
+    منصة الاستزراع المائي الذكي
+</h1>
+
+        </div>
+
+    </div>
+
+    <!-- TITLE -->
+
+    <div class="page-title">
+
+        <div class="welcome-user">
+            مرحباً : 790101233
+        </div>
+
+        <h2>
+            متابعة حالة الطلب
+        </h2>
+
+        <p>
+            يمكنك متابعة حالة طلبك والاطلاع على جميع التفاصيل والموافقات
+        </p>
+
+    </div>
+
+    <!-- REQUEST HEADER -->
+
+    <div class="card" style="margin-bottom:25px;">
+
+        <div class="request-header">
+
+            <div class="badge">
+                قيد المراجعة
+            </div>
+
+            <div class="request-item">
+                <h3>رقم الطلب</h3>
+                <p>AQ-2024-000123</p>
+            </div>
+
+            <div class="request-item">
+                <h3>نوع الطلب</h3>
+                <p style="font-size:24px;">
+                    طلب ترخيص استزراع مائي
+                </p>
+            </div>
+
+            <div class="request-item">
+                <h3>تاريخ تقديم الطلب</h3>
+                <p style="font-size:26px;">
+                    2024-05-01
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- CONTENT -->
+
+    <div class="content">
+
+        <!-- TOP SECTION -->
+
+        <div class="top-sections">
+
+            <!-- SUMMARY -->
+
+            <div>
+
+                <div class="card">
+
+                    <h2 class="summary-title">
+                        ملخص الطلب
+                    </h2>
+
+                    <div class="summary-row">
+                        <span>مقدم الطلب</span>
+                        <strong>شركة البحرين للاستزراع المائي</strong>
+                    </div>
+
+                    <div class="summary-row">
+                        <span>الموقع</span>
+                        <strong>خليج توبلي</strong>
+                    </div>
+
+                 <div class="summary-row">
+    <span>نوع الترخيص</span>
+    <strong>أحواض برية شبه مفتوحة</strong>
+</div>
+
+                    <div class="summary-row">
+                        <span>تاريخ التقديم</span>
+                        <strong>2024-05-01</strong>
+                    </div>
+
+                    <div class="summary-row">
+                        <span>حالة الطلب</span>
+                        <strong style="color:#16a34a;">
+                            قيد المراجعة
+                        </strong>
+                    </div>
+
+                    <button class="full-btn">
+                        عرض التفاصيل الكاملة
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- STEPS -->
+
+            <div>
+
+                <div class="card">
+
+                    <h2 class="steps-title">
+                        مراحل الطلب
+                    </h2>
+
+                    <div class="steps">
+
+                        <div class="step">
+                            <div class="step-circle">✓</div>
+                            <h4>إرسال الطلب</h4>
+                            <p>2024-05-01</p>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-circle">✓</div>
+                            <h4>المراجعة الأولية</h4>
+                            <p>2024-05-02</p>
+                        </div>
+
+                        <div class="step active">
+                            <div class="step-circle">3</div>
+                            <h4>التدقيق الفني</h4>
+                            <p>قيد المراجعة</p>
+                        </div>
+
+                        <div class="step pending">
+                            <div class="step-circle">4</div>
+                            <h4>الموافقات</h4>
+                            <p>لم تبدأ بعد</p>
+                        </div>
+
+                        <div class="step pending">
+                            <div class="step-circle">5</div>
+                            <h4>إصدار الترخيص</h4>
+                            <p>لم تبدأ بعد</p>
+                        </div>
+
+                    </div>
+
+                    <div class="alert-box">
+
+                        <h3>
+                            جاري التدقيق الفني على البيانات والمستندات المقدمة.
+                        </h3>
+
+                    
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- LOG -->
+
+        <div class="card">
+
+            <h2 class="log-title">
+                سجل الإجراءات
+            </h2>
+
+            <div class="log-item">
+
+                <div class="log-left">
+
+                    <div class="log-icon">✓</div>
+
+                    <div class="log-text">
+
+                        <h4>إرسال الطلب</h4>
+
+                        <p>
+                            تم استلام الطلب بنجاح
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="log-right">
+                    2024-05-01 09:15 AM
+                </div>
+
+            </div>
+
+            <div class="log-item">
+
+                <div class="log-left">
+
+                    <div class="log-icon">✓</div>
+
+                    <div class="log-text">
+
+                        <h4>المراجعة الأولية</h4>
+
+                        <p>
+                            تمت مراجعة الطلب والتحقق من اكتمال البيانات
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="log-right">
+                    2024-05-02 11:20 AM
+                </div>
+
+            </div>
+
+            <div class="log-item">
+
+                <div class="log-left">
+
+                    <div class="log-icon" style="background:#032b8c;">
+                        ⏳
+                    </div>
+
+                    <div class="log-text">
+
+                        <h4>التدقيق الفني</h4>
+
+                        <p>
+                            جاري مراجعة البيانات والمرفقات
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="log-right">
+                    2024-05-05 10:30 AM
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- NOTICE -->
+
+        <div class="notice">
+
+            <h3>
+                تنبيه
+            </h3>
+
+
+
+        </div>
+
+        <!-- HELP -->
+
+        <div class="help">
+
+            <h3>
+                تحتاج مساعدة؟
+            </h3>
+
+            <p>
+                فريق الدعم جاهز لمساعدتك
+            </p>
+
+            <a href="#">
+                تواصل مع مركز الدعم
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

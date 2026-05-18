@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>الخرائط الذكية GIS</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<link
+rel="stylesheet"
+href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+/>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Cairo',sans-serif;
+}
+
+body{
+    background:#f4f7fb;
+    padding:25px;
+    color:#0b2f6b;
+}
+
+.page{
+    background:#fff;
+    border-radius:30px;
+    padding:30px;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+/* TOP */
+
+.top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.back-btn{
+    text-decoration:none;
+    color:#0b2f6b;
+    border:2px solid #dbe3f0;
+    padding:12px 28px;
+    border-radius:16px;
+    font-size:20px;
+    font-weight:700;
+    background:#fff;
+}
+
+.logo{
+    text-align:center;
+}
+
+
+
+.logo h2{
+    line-height:1.8;
+    font-size:26px;
+}
+
+/* TITLE */
+
+.title{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.title h1{
+    font-size:55px;
+    margin-bottom:10px;
+}
+
+.title p{
+    color:#64748b;
+    font-size:22px;
+}
+
+/* CONTENT */
+
+.content{
+    display:grid;
+    grid-template-columns:1fr 420px;
+    gap:30px;
+}
+
+
+
+.logo img {
+    width: 600px;
+    height: auto;
+    object-fit: contain;
+}
+
+/* MAP */
+
+#map{
+    height:760px;
+    border-radius:24px;
+    overflow:hidden;
+    border:3px solid #dbe3f0;
+}
+
+/* CARD */
+
+.card{
+    background:#fff;
+    border:1px solid #e2e8f0;
+    border-radius:24px;
+    padding:30px;
+}
+
+.card h3{
+    font-size:36px;
+    margin-bottom:30px;
+}
+
+/* FIELD */
+
+.field{
+    margin-bottom:25px;
+}
+
+.field label{
+    display:block;
+    margin-bottom:10px;
+    font-size:20px;
+    font-weight:700;
+}
+
+.field input{
+    width:100%;
+    height:60px;
+    border:2px solid #dbe3f0;
+    border-radius:14px;
+    padding:0 18px;
+    font-size:18px;
+    background:#f8fafc;
+}
+
+/* ALERT */
+
+.allowed{
+    background:#e7f7ea;
+    color:#166534;
+    padding:20px;
+    border-radius:18px;
+    line-height:2;
+    margin-top:20px;
+    font-size:18px;
+}
+
+.warning{
+    background:#fee2e2;
+    color:#991b1b;
+    padding:20px;
+    border-radius:18px;
+    line-height:2;
+    margin-top:20px;
+    font-size:18px;
+    display:none;
+}
+
+/* BUTTONS */
+
+.buttons{
+    display:flex;
+    gap:15px;
+    margin-top:35px;
+}
+
+.btn{
+    flex:1;
+    height:62px;
+    border:none;
+    border-radius:16px;
+    font-size:20px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.primary{
+    background:#032b8c;
+    color:#fff;
+}
+
+.secondary{
+    background:#fff;
+    border:2px solid #032b8c;
+    color:#032b8c;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1200px){
+
+    .content{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="page">
+
+    <!-- TOP -->
+
+    <div class="top">
+
+        <a href="home.html" class="back-btn">
+            ← العودة
+        </a>
+
+
+<div class="logo">
+
+    <img src="sce-logo-latest.png">
+
+    <h2>
+        منصة الاستزراع المائي الذكي
+    </h2>
+
+</div>
+
+     
+    </div>
+
+    <!-- TITLE -->
+
+    <div class="title">
+
+        <h1>
+            الخرائط الذكية GIS
+        </h1>
+
+        <p>
+            اختر موقع المشروع داخل المنطقة الخضراء
+        </p>
+
+    </div>
+
+    <!-- CONTENT -->
+
+    <div class="content">
+
+        <!-- MAP -->
+
+        <div id="map"></div>
+
+        <!-- FORM -->
+
+        <div class="card">
+
+            <h3>
+                بيانات الموقع
+            </h3>
+
+            <!-- LAT -->
+
+            <div class="field">
+
+                <label>
+                    خط العرض
+                </label>
+
+                <input
+                type="text"
+                id="lat"
+                readonly>
+
+            </div>
+
+            <!-- LNG -->
+
+            <div class="field">
+
+                <label>
+                    خط الطول
+                </label>
+
+                <input
+                type="text"
+                id="lng"
+                readonly>
+
+            </div>
+
+            <!-- ADDRESS -->
+
+            <div class="field">
+
+                <label>
+                    عنوان الموقع
+                </label>
+
+                <input
+                type="text"
+                id="address"
+                readonly>
+
+            </div>
+
+            <!-- INFO -->
+
+            <div class="allowed">
+
+                ✔ المنطقة الخضراء فقط مسموح بها
+                للاستزراع المائي في جنوب البحرين
+
+            </div>
+
+            <!-- WARNING -->
+
+            <div class="warning" id="warning">
+
+                ✖ يرجى اختيار موقع داخل المنطقة الخضراء فقط
+
+            </div>
+
+            <!-- BUTTONS -->
+
+            <div class="buttons">
+
+             <button class="btn secondary"
+onclick="goHome()">
+
+    رجوع
+
+</button>
+
+<button class="btn primary"
+onclick="goHome()">
+
+    تأكيد الموقع
+
+</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- LEAFLET -->
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+
+/* MAP */
+
+const map =
+L.map('map').setView([25.92,50.58],10);
+
+/* TILE */
+
+L.tileLayer(
+'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+{
+    attribution:'OpenStreetMap'
+}).addTo(map);
+
+/* GREEN AREA */
+
+const allowedCoordinates = [
+
+    [26.020,50.500],
+    [26.010,50.575],
+   
+    [25.800,50.470],
+    [25.860,50.420],
+    [25.940,50.410]
+
+];
+
+const allowedArea =
+L.polygon(
+allowedCoordinates,
+{
+    color:'#16a34a',
+    fillColor:'#22c55e',
+    fillOpacity:0.35,
+    weight:4
+}
+).addTo(map);
+
+map.fitBounds(
+allowedArea.getBounds()
+);
+
+/* MARKER */
+
+let marker;
+
+/* CLICK */
+
+map.on('click', async function(e){
+
+    const lat = e.latlng.lat;
+    const lng = e.latlng.lng;
+
+    const point =
+    L.latLng(lat,lng);
+
+    const inside =
+    allowedArea.getBounds().contains(point);
+
+    /* OUTSIDE */
+
+    if(!inside){
+
+        document.getElementById(
+        'warning'
+        ).style.display='block';
+
+        return;
+
+    }
+
+    /* HIDE WARNING */
+
+    document.getElementById(
+    'warning'
+    ).style.display='none';
+
+    /* REMOVE OLD MARKER */
+
+    if(marker){
+
+        map.removeLayer(marker);
+
+    }
+
+    /* ADD MARKER */
+
+    marker =
+    L.marker([lat,lng]).addTo(map);
+
+    /* FIELDS */
+
+    const latField =
+    document.getElementById('lat');
+
+    const lngField =
+    document.getElementById('lng');
+
+    const addressField =
+    document.getElementById('address');
+
+    latField.value =
+    lat.toFixed(6);
+
+    lngField.value =
+    lng.toFixed(6);
+
+    addressField.value =
+    'جاري تحميل الموقع...';
+
+    /* FETCH ADDRESS */
+
+    try{
+
+        const response =
+        await fetch(
+
+        `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`
+
+        );
+
+        const data =
+        await response.json();
+
+        if(
+            data &&
+            data.display_name
+        ){
+
+            addressField.value =
+            data.display_name;
+
+        }
+        else{
+
+            addressField.value =
+            'جنوب البحرين';
+
+        }
+
+    }
+    catch(error){
+
+        addressField.value =
+        'جنوب البحرين';
+
+    }
+
+});
+
+/* SAVE */
+function goHome(){
+
+    window.location.href =
+    'home.html';
+
+}
+
+function saveLocation(){
+
+    if(
+        document.getElementById('lat').value
+        === ''
+    ){
+
+        alert(
+        'يرجى اختيار الموقع من الخريطة'
+        );
+
+        return;
+
+    }
+
+    alert(
+    'تم حفظ الموقع بنجاح'
+    );
+
+    window.location.href =
+    'request2.html';
+
+}
+
+</script>
+
+</body>
+
+</html>
