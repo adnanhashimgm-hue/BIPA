@@ -26,7 +26,7 @@ body{
     overflow-x:hidden;
 }
 
-/* ACTIVE STEP ANIMATION */
+/* ACTIVE STEP */
 
 @keyframes pulseActive{
 
@@ -97,7 +97,7 @@ body{
     line-height:1.8;
 }
 
-/* PAGE TITLE */
+/* TITLE */
 
 .page-title{
     text-align:center;
@@ -177,7 +177,7 @@ body{
 }
 
 .request-item p{
-    font-size:30px;
+    font-size:28px;
     font-weight:700;
 }
 
@@ -234,9 +234,10 @@ body{
 .steps{
     display:flex;
     justify-content:space-between;
-    align-items:center;
+    align-items:flex-start;
     position:relative;
     margin-bottom:50px;
+    gap:20px;
 }
 
 .steps::before{
@@ -258,8 +259,8 @@ body{
 }
 
 .step-circle{
-    width:50px;
-    height:50px;
+    width:52px;
+    height:52px;
     border-radius:50%;
     background:#16a34a;
     color:#fff;
@@ -284,12 +285,37 @@ body{
 
 .step h4{
     margin-top:15px;
-    font-size:20px;
+    font-size:19px;
+    line-height:1.8;
 }
 
 .step p{
     margin-top:10px;
     color:#64748b;
+    font-size:16px;
+}
+
+/* SUB ENTITIES */
+
+.sub-entities{
+    margin-top:18px;
+    border:2px solid #dbe3f0;
+    border-radius:16px;
+    padding:15px;
+    background:#f8fafc;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.sub-item{
+    background:#fff;
+    border:1px solid #e2e8f0;
+    border-radius:12px;
+    padding:10px;
+    font-size:14px;
+    color:#334155;
+    line-height:1.8;
 }
 
 /* ALERT */
@@ -348,6 +374,7 @@ body{
 .log-text p{
     color:#64748b;
     font-size:18px;
+    line-height:1.8;
 }
 
 .log-right{
@@ -389,7 +416,7 @@ body{
 }
 
 /* =========================
-   TABLET RESPONSIVE
+   TABLET
 ========================= */
 
 @media(max-width:1200px){
@@ -418,7 +445,6 @@ body{
 
     .steps{
         flex-wrap:wrap;
-        gap:25px;
         justify-content:center;
     }
 
@@ -434,7 +460,7 @@ body{
 }
 
 /* =========================
-   MOBILE RESPONSIVE
+   MOBILE
 ========================= */
 
 @media(max-width:768px){
@@ -467,7 +493,6 @@ body{
 
     .logo h1{
         font-size:22px;
-        line-height:1.8;
     }
 
     .welcome-user{
@@ -483,12 +508,10 @@ body{
 
     .page-title p{
         font-size:18px;
-        line-height:1.8;
     }
 
     .card{
         padding:22px;
-        border-radius:20px;
     }
 
     .request-header{
@@ -497,7 +520,7 @@ body{
     }
 
     .request-item p{
-        font-size:24px;
+        font-size:22px;
     }
 
     .summary-title,
@@ -513,16 +536,8 @@ body{
         font-size:18px;
     }
 
-    .full-btn{
-        height:58px;
-        font-size:18px;
-    }
-
-    /* STEPS */
-
     .steps{
         flex-direction:column;
-        gap:30px;
     }
 
     .steps::before{
@@ -539,14 +554,6 @@ body{
         font-size:20px;
     }
 
-    .step h4{
-        font-size:18px;
-    }
-
-    .step p{
-        font-size:16px;
-    }
-
     .alert-box{
         padding:22px;
     }
@@ -555,12 +562,9 @@ body{
         font-size:22px;
     }
 
-    /* LOG */
-
     .log-item{
         flex-direction:column;
         text-align:center;
-        gap:15px;
     }
 
     .log-left{
@@ -580,8 +584,6 @@ body{
         text-align:center;
         font-size:16px;
     }
-
-    /* HELP */
 
     .help{
         padding:22px;
@@ -706,14 +708,14 @@ body{
 
             <div class="request-item">
                 <h3>نوع الطلب</h3>
-                <p style="font-size:24px;">
+                <p>
                     طلب ترخيص استزراع مائي
                 </p>
             </div>
 
             <div class="request-item">
                 <h3>تاريخ تقديم الطلب</h3>
-                <p style="font-size:26px;">
+                <p>
                     2024-05-01
                 </p>
             </div>
@@ -781,34 +783,96 @@ body{
 
                 <div class="steps">
 
-                    <div class="step">
-                        <div class="step-circle">✓</div>
-                        <h4>إرسال الطلب</h4>
-                        <p>2024-05-01</p>
-                    </div>
+                    <!-- STEP 1 -->
 
                     <div class="step">
+
                         <div class="step-circle">✓</div>
-                        <h4>المراجعة الأولية</h4>
-                        <p>2024-05-02</p>
+
+                        <h4>
+                            إرسال الطلب
+                        </h4>
+
+                        <p>
+                            2024-05-01
+                        </p>
+
                     </div>
+
+                    <!-- STEP 2 -->
+
+                    <div class="step">
+
+                        <div class="step-circle">✓</div>
+
+                        <h4>
+                            المراجعة الأولية (Sijilat)
+                        </h4>
+
+                        <p>
+                            2024-05-02
+                        </p>
+
+                    </div>
+
+                    <!-- STEP 3 -->
 
                     <div class="step active">
+
                         <div class="step-circle">3</div>
-                        <h4>التدقيق الفني</h4>
-                        <p>قيد المراجعة</p>
+
+                        <h4>
+                            التدقيق الفني (GIS)
+                        </h4>
+
+                        <p>
+                            قيد المراجعة
+                        </p>
+
                     </div>
 
+                    <!-- STEP 4 -->
+
                     <div class="step pending">
+
                         <div class="step-circle">4</div>
-                        <h4>الموافقات</h4>
-                        <p>لم تبدأ بعد</p>
+
+                        <h4>
+                            الموافقات - الجهات
+                        </h4>
+
+                        <div class="sub-entities">
+
+                            <div class="sub-item">
+                                وزارة الصناعة والتجارة (MOIC)
+                            </div>
+
+                            <div class="sub-item">
+                                وزارة شؤون البلديات (MUNICIPALITY)
+                            </div>
+
+                            <div class="sub-item">
+                                المجلس الأعلى للبيئة (SCE)
+                            </div>
+
+                        </div>
+
                     </div>
 
+                    <!-- STEP 5 -->
+
                     <div class="step pending">
+
                         <div class="step-circle">5</div>
-                        <h4>إصدار الترخيص</h4>
-                        <p>لم تبدأ بعد</p>
+
+                        <h4>
+                            إصدار الترخيص
+                        </h4>
+
+                        <p>
+                            لم تبدأ بعد
+                        </p>
+
                     </div>
 
                 </div>
@@ -830,7 +894,7 @@ body{
         <div class="card">
 
             <h2 class="log-title">
-                سجل الإجراءات
+                سجل الإجراءات والجهات
             </h2>
 
             <div class="log-item">
@@ -841,10 +905,12 @@ body{
 
                     <div class="log-text">
 
-                        <h4>إرسال الطلب</h4>
+                        <h4>
+                            إرسال الطلب
+                        </h4>
 
                         <p>
-                            تم استلام الطلب بنجاح
+                            تم استلام الطلب إلكترونياً بنجاح
                         </p>
 
                     </div>
@@ -865,10 +931,12 @@ body{
 
                     <div class="log-text">
 
-                        <h4>المراجعة الأولية</h4>
+                        <h4>
+                            المراجعة الأولية (Sijilat)
+                        </h4>
 
                         <p>
-                            تمت مراجعة الطلب والتحقق من اكتمال البيانات
+                            تم التحقق من بيانات السجل التجاري والمرفقات
                         </p>
 
                     </div>
@@ -891,10 +959,12 @@ body{
 
                     <div class="log-text">
 
-                        <h4>التدقيق الفني</h4>
+                        <h4>
+                            التدقيق الفني (GIS)
+                        </h4>
 
                         <p>
-                            جاري مراجعة البيانات والمرفقات
+                            جاري تحليل الموقع والتحقق من مطابقة الاشتراطات الجغرافية
                         </p>
 
                     </div>
@@ -903,6 +973,34 @@ body{
 
                 <div class="log-right">
                     2024-05-05 10:30 AM
+                </div>
+
+            </div>
+
+            <div class="log-item">
+
+                <div class="log-left">
+
+                    <div class="log-icon" style="background:#94a3b8;">
+                        ⌛
+                    </div>
+
+                    <div class="log-text">
+
+                        <h4>
+                            الجهات الحكومية
+                        </h4>
+
+                        <p>
+                            بانتظار إرسال الطلب إلى الجهات المعنية للحصول على الموافقات
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="log-right">
+                    Pending
                 </div>
 
             </div>
